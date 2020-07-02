@@ -1,23 +1,19 @@
-/* These are the Dependancies for the app; without these the app crashes*/
-var express = require("express")
-var bodyParser = require("body-parser")
-var path = require("path")
+// Requirements
+const express = require('express');
+// const path = require('path');
 
-var app = express(); 
+//Express
+let app = express();
+let PORT = process.env.PORT || 8080;
 
-var PORT = process.env.PORT || 8080;
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.static('./app/public'));
 
-/* This sets of the app so that it can handle the data parsing */ 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: `application/vnd.api.json`}))
+require('./app/routing/apiRoutes')(app);
+require('./app/routing/htmlRoutes')(app);
 
-/*This is the Router for the app; it allows for information to be pulled*/
-require('.app/routing/apiRoutes.js')(app)
-require('.app/routing/htmlRoutes.js')(app)
-
-/*This is what starts the server and it will begin listening for commands*/
+//Web server
 app.listen(PORT, function() {
-        console.log("App is listening on Port: " + PORT);
+    console.log('Listening on port: ' + PORT);
 });
