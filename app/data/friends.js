@@ -2,7 +2,18 @@ var friendsArray = [
         {
                 name: "Kori Anders",
                 photo: "",
-                scores: []
+                scores: [
+                    1,
+                    5,
+                    5,
+                    1,
+                    3,
+                    1,
+                    1,
+                    2,
+                    5,
+                    8,
+                ]
         },
         {
                 name: "Richard Grayson",
